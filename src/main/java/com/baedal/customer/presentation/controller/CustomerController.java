@@ -18,10 +18,11 @@ public class CustomerController {
   private final CustomerAuthenticationService customerAuthenticationService;
 
 
-  @PostMapping("v0/login")
+  @PostMapping("/v0/login")
   public ResponseEntity<?> login(@RequestBody LoginRequest request) {
     String token = customerAuthenticationService.authenticate(request.email(), request.password());
     LoginResponse response = new LoginResponse(token);
     return ResponseEntity.ok(response);
   }
+
 }

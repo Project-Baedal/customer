@@ -33,8 +33,8 @@ public class SecurityConfig {
         .formLogin(AbstractHttpConfigurer::disable)
         .httpBasic(Customizer.withDefaults())
         .authorizeHttpRequests((auth) -> auth
-            .requestMatchers("v0/login").permitAll()
-            .requestMatchers("v0/signup").permitAll()
+            .requestMatchers("/v0/login").permitAll()
+            .requestMatchers("/v0/signup").permitAll()
             .anyRequest().authenticated())
         .build();
   }

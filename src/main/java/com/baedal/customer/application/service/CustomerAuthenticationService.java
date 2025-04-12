@@ -27,7 +27,7 @@ public class CustomerAuthenticationService {
       throw new IllegalArgumentException("Invalid email or password");
     }
 
-    return tokenServicePort.requestToken(email, getAuthority(user));
+    return tokenServicePort.requestToken(email);
   }
 
   private String getAuthority(UserDetails user) {

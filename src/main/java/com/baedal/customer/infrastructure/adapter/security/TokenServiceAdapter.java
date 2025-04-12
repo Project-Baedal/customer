@@ -12,9 +12,9 @@ public class TokenServiceAdapter implements TokenServicePort {
 //  private final RestClient restClient;
 
   @Override
-  public String requestToken(String email, String role) {
+  public String requestToken(String email) {
     // FIXME: Mocking
-    return email + role;
+    return email;
   }
 
   @Override

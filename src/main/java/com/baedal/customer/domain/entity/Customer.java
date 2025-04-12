@@ -2,20 +2,15 @@ package com.baedal.customer.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Getter
@@ -26,20 +21,11 @@ public class Customer {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @CreatedDate
-  @Column(name = "created_at", updatable = false)
-  @Temporal(TemporalType.TIMESTAMP)
+  @CreationTimestamp
   private LocalDateTime createdAt;
 
-  @LastModifiedDate
-  @Column(name = "updated_at")
-  @Temporal(TemporalType.TIMESTAMP)
+  @UpdateTimestamp
   private LocalDateTime modifiedAt;
-
-  @PrePersist
-  public void prePersist() {
-    this.modifiedAt = LocalDateTime.now();
-  }
 
   @Column(unique = true, nullable = false)
   private String email;
@@ -47,11 +33,8 @@ public class Customer {
   @Column(nullable = false)
   private String nickname;
 
-  @Column
+  @Column(nullable = false)
   private String password;
-
-  @Enumerated(EnumType.STRING)
-  private MemberRole role;
 
   @Column(nullable = false)
   private Boolean isOAuth2;
@@ -60,7 +43,6 @@ public class Customer {
     this.email = email;
     this.nickname = nickname;
     this.password = password;
-    this.role = MemberRole.CUSTOMER;
     this.isOAuth2 = false;
   }
 }

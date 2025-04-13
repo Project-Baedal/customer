@@ -1,4 +1,4 @@
-package com.baedal.customer.infrastructure.adapter.security;
+package com.baedal.customer.adapter.presentation.security;
 
 import com.baedal.customer.domain.entity.Customer;
 import com.baedal.customer.domain.repository.CustomerRepository;
@@ -15,7 +15,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
   private final CustomerRepository repository;
 
   /**
-   *
    * @param username the username identifying the user whose data is required.
    * @return
    * @throws UsernameNotFoundException

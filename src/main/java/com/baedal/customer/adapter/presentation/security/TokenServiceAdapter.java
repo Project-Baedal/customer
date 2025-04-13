@@ -1,6 +1,6 @@
-package com.baedal.customer.infrastructure.adapter.security;
+package com.baedal.customer.adapter.presentation.security;
 
-import com.baedal.customer.application.port_out.TokenServicePort;
+import com.baedal.customer.application.port.out.TokenServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

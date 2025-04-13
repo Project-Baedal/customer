@@ -1,4 +1,4 @@
-package com.baedal.customer.application.port_out;
+package com.baedal.customer.application.port.out;
 
 public interface TokenServicePort {
 

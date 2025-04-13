@@ -1,5 +1,6 @@
 package com.baedal.customer.application.service;
 
+import com.baedal.customer.application.port.in.CustomerSignupUsecase;
 import com.baedal.customer.domain.entity.Customer;
 import com.baedal.customer.domain.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerSignupService {
+public class CustomerSignupService implements CustomerSignupUsecase {
 
   private final CustomerRepository repository;
   private final PasswordEncoder passwordEncoder;

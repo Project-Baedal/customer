@@ -1,5 +1,7 @@
 package com.baedal.customer.application.service;
 
+import com.baedal.customer.adapter.presentation.response.LoginResponse;
+import com.baedal.customer.adapter.presentation.security.UserDetailsImpl;
 import com.baedal.customer.application.port.in.CustomerAuthenticationUsecase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,15 +20,18 @@ public class CustomerAuthenticationService implements CustomerAuthenticationUsec
   private final UserDetailsService userDetailsService;
 
   @Transactional(readOnly = true)
-  public String authenticate(String email, String password) {
-    UserDetails user = userDetailsService.loadUserByUsername(email);
+  public LoginResponse authenticate(String email, String password) {
+    UserDetailsImpl user = (UserDetailsImpl) userDetailsService.loadUserByUsername(email);
 
     if (!passwordEncoder.matches(password, user.getPassword())) {
       // FIXME: Define Exception Class
       throw new IllegalArgumentException("Invalid email or password");
     }
 
-    return tokenServicePort.requestToken(email);
+    return new LoginResponse(
+        user.customer().getId(),
+        user.customer().getEmail()
+    );
   }
 
   private String getAuthority(UserDetails user) {

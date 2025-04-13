@@ -1,6 +1,8 @@
 package com.baedal.customer.application.port.in;
 
+import com.baedal.customer.adapter.presentation.response.LoginResponse;
+
 public interface CustomerAuthenticationUsecase {
 
-  String authenticate(String email, String password);
+  LoginResponse authenticate(String email, String password);
 }

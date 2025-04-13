@@ -1,5 +1,5 @@
 package com.baedal.customer.adapter.presentation.response;
 
-public record LoginResponse(String token) {
+public record LoginResponse(Long id, String email) {
 
 }

@@ -23,8 +23,8 @@ public class CustomerController {
 
   @PostMapping("/v0/login")
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
-    String token = customerAuthenticationUsecase.authenticate(request.email(), request.password());
-    LoginResponse response = new LoginResponse(token);
+    LoginResponse response = customerAuthenticationUsecase.authenticate(request.email(),
+        request.password());
     return ResponseEntity.ok(response);
   }
 

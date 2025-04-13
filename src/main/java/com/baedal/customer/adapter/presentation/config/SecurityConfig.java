@@ -1,4 +1,4 @@
-package com.baedal.customer.adapter.presentation.security;
+package com.baedal.customer.adapter.presentation.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

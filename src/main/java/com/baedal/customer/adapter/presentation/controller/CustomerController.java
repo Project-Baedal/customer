@@ -10,25 +10,27 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
+@RequestMapping("/v0")
 public class CustomerController {
 
   private final CustomerAuthenticationUsecase customerAuthenticationUsecase;
 
   private final CustomerSignupUsecase customerSignupUsecase;
 
-  @PostMapping("/v0/login")
+  @PostMapping("/login")
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
     LoginResponse response = customerAuthenticationUsecase.authenticate(request.email(),
         request.password());
     return ResponseEntity.ok(response);
   }
 
-  @PostMapping("/v0/signup")
+  @PostMapping("/signup")
   public ResponseEntity<Void> singup(@RequestBody SignupRequest request) {
     customerSignupUsecase.signup(request.email(), request.nickname(), request.password());
     return ResponseEntity.noContent().build();

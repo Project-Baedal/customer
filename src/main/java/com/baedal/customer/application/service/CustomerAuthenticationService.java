@@ -29,8 +29,7 @@ public class CustomerAuthenticationService implements CustomerAuthenticationUsec
     }
 
     return new LoginResponse(
-        user.customer().getId(),
-        user.customer().getEmail()
+        user.customer().getId()
     );
   }
 

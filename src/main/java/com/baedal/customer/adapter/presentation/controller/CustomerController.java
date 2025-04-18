@@ -4,6 +4,7 @@ import com.baedal.customer.adapter.presentation.request.LoginRequest;
 import com.baedal.customer.adapter.presentation.request.SignupRequest;
 import com.baedal.customer.adapter.presentation.response.GetCustomerResponse;
 import com.baedal.customer.adapter.presentation.response.LoginResponse;
+import com.baedal.customer.application.port.dto.CustomerInfo;
 import com.baedal.customer.application.port.in.CustomerAuthenticationUsecase;
 import com.baedal.customer.application.port.in.CustomerSignupUsecase;
 import com.baedal.customer.application.service.CustomerService;
@@ -43,7 +44,8 @@ public class CustomerController {
 
   @GetMapping
   public ResponseEntity<GetCustomerResponse> getCustomer(@AuthenticationPrincipal Long customerId) {
-    GetCustomerResponse response = customerService.getCustomer(customerId);
+    CustomerInfo customer = customerService.getCustomer(customerId);
+    GetCustomerResponse response = new GetCustomerResponse(customer.id(), customer.nickname());
     return ResponseEntity.ok(response);
   }
 }

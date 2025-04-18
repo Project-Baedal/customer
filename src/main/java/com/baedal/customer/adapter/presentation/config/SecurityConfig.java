@@ -1,5 +1,6 @@
 package com.baedal.customer.adapter.presentation.config;
 
+import com.baedal.customer.adapter.presentation.security.AuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -30,11 +32,16 @@ public class SecurityConfig {
             sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         )
         .formLogin(AbstractHttpConfigurer::disable)
-        .httpBasic(Customizer.withDefaults()) // FIXME: 인증 필터 등록하고 httpBasic 기본 설정 대신 비활성화.
+        .httpBasic(Customizer.withDefaults())
+
+        .addFilterBefore(new AuthFilter(), UsernamePasswordAuthenticationFilter.class)
+
         .authorizeHttpRequests((auth) -> auth
             .requestMatchers("/v0/login").permitAll()
             .requestMatchers("/v0/signup").permitAll()
-            .anyRequest().authenticated())
+            .requestMatchers("/error").permitAll()
+            .anyRequest().hasRole("CUSTOMER"))
         .build();
   }
+
 }

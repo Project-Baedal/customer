@@ -5,6 +5,10 @@
 #    password: customer
 #    driver-class-name: org.postgresql.Driver
 
+logging:
+  level:
+    com.baedal: DEBUG
+
 jpa:
   hibernate:
     ddl-auto: update

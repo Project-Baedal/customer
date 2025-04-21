@@ -2,9 +2,9 @@ package com.baedal.customer.adapter.presentation.config;
 
 import com.baedal.customer.adapter.presentation.security.AuthFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -19,6 +19,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+  @Value("${security.permit-all.urls}")
+  private String[] permitAllUrls;
+
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
@@ -28,18 +31,17 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
     return httpSecurity
         .csrf(AbstractHttpConfigurer::disable)
+        .formLogin(AbstractHttpConfigurer::disable)
+        .httpBasic(AbstractHttpConfigurer::disable)
+
         .sessionManagement(sessionManagement ->
             sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         )
-        .formLogin(AbstractHttpConfigurer::disable)
-        .httpBasic(Customizer.withDefaults())
 
         .addFilterBefore(new AuthFilter(), UsernamePasswordAuthenticationFilter.class)
 
         .authorizeHttpRequests((auth) -> auth
-            .requestMatchers("/v0/login").permitAll()
-            .requestMatchers("/v0/signup").permitAll()
-            .requestMatchers("/error").permitAll()
+            .requestMatchers(permitAllUrls).permitAll()
             .anyRequest().hasRole("CUSTOMER"))
         .build();
   }

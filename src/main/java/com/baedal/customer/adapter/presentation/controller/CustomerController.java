@@ -38,7 +38,7 @@ public class CustomerController {
 
   @PostMapping("/signup")
   public ResponseEntity<Void> singup(@RequestBody SignupRequest request) {
-    customerSignupUsecase.signup(request.email(), request.nickname(), request.password());
+    customerSignupUsecase.signup(request.email(), request.name(), request.password());
     return ResponseEntity.noContent().build();
   }
 

@@ -13,10 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomerSignupService implements CustomerSignupUsecase {
 
   private final CustomerRepository repository;
+
   private final PasswordEncoder passwordEncoder;
 
   @Transactional
-  public void signup(String email, String nickname, String rawPassword) {
+  public void signUp(String email, String nickname, String rawPassword) {
     Customer customer = new Customer(email, nickname, passwordEncoder.encode(rawPassword));
     repository.save(customer);
   }

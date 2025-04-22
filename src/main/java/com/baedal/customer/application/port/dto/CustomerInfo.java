@@ -1,5 +1,5 @@
 package com.baedal.customer.application.port.dto;
 
-public record CustomerInfo(Long id, String nickname) {
+public record CustomerInfo(Long id, String name) {
 
 }

@@ -1,5 +1,6 @@
-package com.baedal.customer.adapter.presentation.security;
+package com.baedal.customer.application.service;
 
+import com.baedal.customer.adapter.presentation.security.UserDetailsImpl;
 import com.baedal.customer.domain.entity.Customer;
 import com.baedal.customer.domain.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;

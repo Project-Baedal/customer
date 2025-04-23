@@ -17,6 +17,6 @@ public class CustomerService {
   public CustomerInfo getCustomer(Long customerId) {
     Customer customer = repository.findById(customerId)
         .orElseThrow(() -> new RuntimeException("Customer 조회 실패"));
-    return new CustomerInfo(customer.getId(), customer.getNickname());
+    return new CustomerInfo(customer.getId(), customer.getName());
   }
 }

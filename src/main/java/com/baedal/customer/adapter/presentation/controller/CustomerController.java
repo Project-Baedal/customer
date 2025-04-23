@@ -38,8 +38,8 @@ public class CustomerController {
   }
 
   @PostMapping("/signup")
-  public ResponseEntity<Void> singup(@RequestBody SignupRequest request) {
-    customerSignupUsecase.signup(request.email(), request.name(), request.password());
+  public ResponseEntity<Void> singUp(@RequestBody SignUpRequest request) {
+    customerSignupUsecase.signUp(request.email(), request.name(), request.password());
     return ResponseEntity.noContent().build();
   }
 

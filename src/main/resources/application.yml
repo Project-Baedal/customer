@@ -8,4 +8,4 @@ spring:
 
 security:
   permit-all:
-    urls: /v0/login, /v0/signup, /error
+    urls: /api/customer/v0/login, /api/customer/v0/signup, /error

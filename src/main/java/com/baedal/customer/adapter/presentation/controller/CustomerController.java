@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/v0")
+@RequestMapping("/api/customer/v0")
 public class CustomerController {
 
   private final CustomerAuthenticationUsecase usecase;

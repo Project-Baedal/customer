@@ -1,13 +1,16 @@
 package com.baedal.customer.adapter.presentation.controller;
 
+import com.baedal.customer.adapter.presentation.mapper.CustomerWebMapper;
 import com.baedal.customer.adapter.presentation.request.LoginRequest;
 import com.baedal.customer.adapter.presentation.request.SignUpRequest;
 import com.baedal.customer.adapter.presentation.response.GetCustomerResponse;
+import com.baedal.customer.adapter.presentation.response.GetCustomersResponse;
 import com.baedal.customer.adapter.presentation.response.LoginResponse;
 import com.baedal.customer.application.port.dto.CustomerInfo;
-import com.baedal.customer.application.port.in.CustomerAuthenticationUsecase;
+import com.baedal.customer.application.port.in.CustomerAuthenticationUseCase;
 import com.baedal.customer.application.port.in.CustomerSignupUsecase;
 import com.baedal.customer.application.service.CustomerService;
+import java.util.Collection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,15 +29,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/customer/v0")
 public class CustomerController {
 
-  private final CustomerAuthenticationUsecase usecase;
+  private final CustomerAuthenticationUseCase authUseCase;
 
   private final CustomerSignupUsecase customerSignupUsecase;
 
-  private final CustomerService customerService;
+  private final CustomerService service;
+
+  private final CustomerWebMapper mapper;
 
   @PostMapping("/login")
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
-    LoginResponse response = usecase.authenticate(request.email(), request.password());
+    LoginResponse response = authUseCase.authenticate(request.email(), request.password());
     return ResponseEntity.ok(response);
   }
 
@@ -47,15 +53,22 @@ public class CustomerController {
   @GetMapping("/profile")
   public ResponseEntity<GetCustomerResponse> getMyProfile(
       @AuthenticationPrincipal Long customerId) {
-    CustomerInfo customer = customerService.getCustomer(customerId);
-    GetCustomerResponse response = new GetCustomerResponse(customer.id(), customer.name());
+    CustomerInfo customer = service.getCustomer(customerId);
+    GetCustomerResponse response = mapper.toGetCustomerResponse(customer);
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping("/reviewInfo/{customerId}")
+  @GetMapping("/reviewInfos/{customerId}")
   public ResponseEntity<GetCustomerResponse> getCustomer(@PathVariable Long customerId) {
-    CustomerInfo customer = customerService.getCustomer(customerId);
-    GetCustomerResponse response = new GetCustomerResponse(customer.id(), customer.name());
+    CustomerInfo customer = service.getCustomer(customerId);
+    GetCustomerResponse response = mapper.toGetCustomerResponse(customer);
+    return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/reviewInfos")
+  public ResponseEntity<GetCustomersResponse> getCustomers(@RequestParam Collection<Long> ids) {
+    Collection<CustomerInfo> customers = service.getCustomers(ids);
+    GetCustomersResponse response = mapper.toGetCustomersResponse(customers);
     return ResponseEntity.ok(response);
   }
 }

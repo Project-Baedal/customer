@@ -6,6 +6,9 @@ spring:
     ansi:
       enabled: always
 
+server:
+  port: 8088
+
 security:
   permit-all:
     urls: /api/customer/v0/login, /api/customer/v0/signup, /error

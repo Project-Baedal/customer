@@ -1,5 +1,6 @@
 package com.baedal.customer.application.service;
 
+import com.baedal.customer.application.annotation.LogExecutionTime;
 import com.baedal.customer.application.mapper.CustomerApplicationMapper;
 import com.baedal.customer.application.port.dto.CustomerInfo;
 import com.baedal.customer.domain.entity.Customer;
@@ -17,6 +18,7 @@ public class CustomerService {
 
   private final CustomerRepository repository;
 
+  @LogExecutionTime
   @Transactional(readOnly = true)
   public CustomerInfo getCustomer(Long customerId) {
     Customer customer = repository.findById(customerId)
@@ -24,6 +26,7 @@ public class CustomerService {
     return mapper.entityToInfo(customer);
   }
 
+  @LogExecutionTime
   @Transactional(readOnly = true)
   public Collection<CustomerInfo> getCustomers(Collection<Long> customerIds) {
     return repository.findAllById(customerIds)

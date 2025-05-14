@@ -1,5 +1,12 @@
 package com.baedal.customer.application.port.dto;
 
-public record CustomerInfo(Long id, String name) {
+import lombok.Builder;
+import lombok.Getter;
 
+@Getter
+@Builder
+public class CustomerInfo {
+
+  private Long id;
+  private String name;
 }

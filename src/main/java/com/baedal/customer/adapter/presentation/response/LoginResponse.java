@@ -1,5 +1,11 @@
 package com.baedal.customer.adapter.presentation.response;
 
-public record LoginResponse(Long id) {
+import lombok.Builder;
+import lombok.Getter;
 
+@Getter
+@Builder
+public class LoginResponse {
+
+  private Long id;
 }

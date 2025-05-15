@@ -1,8 +1,8 @@
 package com.baedal.customer.application.service;
 
-import com.baedal.customer.adapter.web.security.UserDetailsImpl;
-import com.baedal.customer.domain.entity.Customer;
-import com.baedal.customer.domain.repository.CustomerRepository;
+import com.baedal.customer.adapter.persistence.model.UserDetailsImpl;
+import com.baedal.customer.adapter.persistence.entity.Customer;
+import com.baedal.customer.adapter.persistence.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;

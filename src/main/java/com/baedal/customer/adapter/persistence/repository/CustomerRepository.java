@@ -1,6 +1,6 @@
-package com.baedal.customer.domain.repository;
+package com.baedal.customer.adapter.persistence.repository;
 
-import com.baedal.customer.domain.entity.Customer;
+import com.baedal.customer.adapter.persistence.entity.Customer;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

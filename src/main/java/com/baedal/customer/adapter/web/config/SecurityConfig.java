@@ -1,6 +1,6 @@
 package com.baedal.customer.adapter.web.config;
 
-import com.baedal.customer.adapter.web.security.AuthFilter;
+import com.baedal.customer.adapter.web.filter.AuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

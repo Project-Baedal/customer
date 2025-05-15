@@ -1,4 +1,4 @@
-package com.baedal.customer.adapter.web.config;
+package com.baedal.customer.config;
 
 import com.baedal.customer.adapter.web.filter.AuthFilter;
 import lombok.RequiredArgsConstructor;

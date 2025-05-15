@@ -1,4 +1,4 @@
-package com.baedal.customer.adapter.presentation.request;
+package com.baedal.customer.adapter.web.request;
 
 public record LoginRequest(String email, String password) {
 

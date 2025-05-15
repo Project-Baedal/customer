@@ -1,4 +1,4 @@
-package com.baedal.customer.adapter.presentation.response;
+package com.baedal.customer.adapter.web.response;
 
 import lombok.Builder;
 import lombok.Getter;

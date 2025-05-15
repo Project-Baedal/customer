@@ -1,7 +1,7 @@
 package com.baedal.customer.application.service;
 
-import com.baedal.customer.adapter.presentation.response.LoginResponse;
-import com.baedal.customer.adapter.presentation.security.UserDetailsImpl;
+import com.baedal.customer.adapter.web.response.LoginResponse;
+import com.baedal.customer.adapter.web.security.UserDetailsImpl;
 import com.baedal.customer.application.mapper.CustomerApplicationMapper;
 import com.baedal.customer.application.port.in.CustomerAuthenticationUseCase;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,8 @@
-package com.baedal.customer.adapter.presentation.controller;
+package com.baedal.customer.adapter.web.controller;
 
-import com.baedal.customer.adapter.presentation.request.LoginRequest;
-import com.baedal.customer.adapter.presentation.request.SignUpRequest;
-import com.baedal.customer.adapter.presentation.response.LoginResponse;
+import com.baedal.customer.adapter.web.request.LoginRequest;
+import com.baedal.customer.adapter.web.request.SignUpRequest;
+import com.baedal.customer.adapter.web.response.LoginResponse;
 import com.baedal.customer.application.port.in.CustomerAuthenticationUseCase;
 import com.baedal.customer.application.port.in.CustomerSignupUsecase;
 import lombok.RequiredArgsConstructor;

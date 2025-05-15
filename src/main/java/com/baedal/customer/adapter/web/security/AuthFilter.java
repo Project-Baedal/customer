@@ -1,4 +1,4 @@
-package com.baedal.customer.adapter.presentation.security;
+package com.baedal.customer.adapter.web.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

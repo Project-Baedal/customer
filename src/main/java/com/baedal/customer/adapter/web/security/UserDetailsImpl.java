@@ -1,4 +1,4 @@
-package com.baedal.customer.adapter.presentation.security;
+package com.baedal.customer.adapter.web.security;
 
 import com.baedal.customer.domain.entity.Customer;
 import java.util.ArrayList;

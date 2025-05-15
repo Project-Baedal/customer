@@ -1,8 +1,8 @@
-package com.baedal.customer.adapter.presentation.controller;
+package com.baedal.customer.adapter.web.controller;
 
-import com.baedal.customer.adapter.presentation.mapper.CustomerWebMapper;
-import com.baedal.customer.adapter.presentation.response.GetCustomerResponse;
-import com.baedal.customer.adapter.presentation.response.GetCustomersResponse;
+import com.baedal.customer.adapter.web.mapper.CustomerWebMapper;
+import com.baedal.customer.adapter.web.response.GetCustomerResponse;
+import com.baedal.customer.adapter.web.response.GetCustomersResponse;
 import com.baedal.customer.application.port.dto.CustomerInfo;
 import com.baedal.customer.application.service.CustomerService;
 import java.util.Collection;

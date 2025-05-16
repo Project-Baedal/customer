@@ -12,18 +12,22 @@ import org.springframework.web.filter.OncePerRequestFilter;
 public class RequestAccessLoggingFilter extends OncePerRequestFilter {
 
   @Override
-  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
-      FilterChain filterChain) throws ServletException, IOException {
+  protected void doFilterInternal(
+      HttpServletRequest request,
+      HttpServletResponse response,
+      FilterChain filterChain
+  ) throws ServletException, IOException {
+    String method = request.getMethod();
     String ip = getClientIp(request);
     String uri = request.getRequestURI();
 
-    log.info("Before Request:: Client IP: [{}], url:[{}]", ip, uri);
+    log.info("Before Request:: Client IP: [{}], [{}] path:[{}]", ip, method, uri);
     try {
       filterChain.doFilter(request, response);
     } catch (Throwable e) {
       throw e;
     } finally {
-      log.info("After Request:: Client IP: [{}], url:[{}]", ip, uri);
+      log.info("After Request:: Client IP: [{}], [{}] path:[{}]", ip, method, uri);
     }
   }
 

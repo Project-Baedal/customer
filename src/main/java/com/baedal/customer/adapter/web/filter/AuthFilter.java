@@ -32,6 +32,7 @@ public class AuthFilter extends OncePerRequestFilter {
           null,
           List.of(new SimpleGrantedAuthority(authority))
       );
+      log.info("customer:[{}] authenticated with role:[{}]", customerId, authority);
       SecurityContextHolder.getContext().setAuthentication(auth);
     }
     chain.doFilter(request, response);

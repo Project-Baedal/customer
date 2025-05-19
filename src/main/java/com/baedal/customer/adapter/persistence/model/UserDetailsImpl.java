@@ -1,6 +1,6 @@
-package com.baedal.customer.adapter.presentation.security;
+package com.baedal.customer.adapter.persistence.model;
 
-import com.baedal.customer.domain.entity.Customer;
+import com.baedal.customer.adapter.persistence.entity.Customer;
 import java.util.ArrayList;
 import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;

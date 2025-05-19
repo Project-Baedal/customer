@@ -1,7 +1,7 @@
-package com.baedal.customer.adapter.presentation.mapper;
+package com.baedal.customer.adapter.web.mapper;
 
-import com.baedal.customer.adapter.presentation.response.GetCustomerResponse;
-import com.baedal.customer.adapter.presentation.response.GetCustomersResponse;
+import com.baedal.customer.adapter.web.response.GetCustomerResponse;
+import com.baedal.customer.adapter.web.response.GetCustomersResponse;
 import com.baedal.customer.application.port.dto.CustomerInfo;
 import java.util.Collection;
 import org.mapstruct.Mapper;

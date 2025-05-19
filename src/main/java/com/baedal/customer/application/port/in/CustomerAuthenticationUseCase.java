@@ -1,6 +1,6 @@
 package com.baedal.customer.application.port.in;
 
-import com.baedal.customer.adapter.presentation.response.LoginResponse;
+import com.baedal.customer.adapter.web.response.LoginResponse;
 
 public interface CustomerAuthenticationUseCase {
 

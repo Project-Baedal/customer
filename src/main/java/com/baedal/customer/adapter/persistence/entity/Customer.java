@@ -1,4 +1,4 @@
-package com.baedal.customer.domain.entity;
+package com.baedal.customer.adapter.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

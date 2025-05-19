@@ -1,4 +1,4 @@
-package com.baedal.customer.adapter.presentation.security;
+package com.baedal.customer.adapter.web.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -32,6 +32,7 @@ public class AuthFilter extends OncePerRequestFilter {
           null,
           List.of(new SimpleGrantedAuthority(authority))
       );
+      log.info("customer:[{}] authenticated with role:[{}]", customerId, authority);
       SecurityContextHolder.getContext().setAuthentication(auth);
     }
     chain.doFilter(request, response);

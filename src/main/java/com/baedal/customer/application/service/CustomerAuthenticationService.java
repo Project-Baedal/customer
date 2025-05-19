@@ -1,10 +1,12 @@
 package com.baedal.customer.application.service;
 
-import com.baedal.customer.adapter.presentation.response.LoginResponse;
-import com.baedal.customer.adapter.presentation.security.UserDetailsImpl;
+import com.baedal.customer.adapter.web.response.LoginResponse;
+import com.baedal.customer.adapter.persistence.model.UserDetailsImpl;
+import com.baedal.customer.application.mapper.CustomerApplicationMapper;
 import com.baedal.customer.application.port.in.CustomerAuthenticationUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,20 +19,20 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomerAuthenticationService implements CustomerAuthenticationUseCase {
 
   private final PasswordEncoder passwordEncoder;
+
   private final UserDetailsService userDetailsService;
+
+  private final CustomerApplicationMapper mapper;
 
   @Transactional(readOnly = true)
   public LoginResponse authenticate(String email, String password) {
     UserDetailsImpl user = (UserDetailsImpl) userDetailsService.loadUserByUsername(email);
 
     if (!passwordEncoder.matches(password, user.getPassword())) {
-      // FIXME: Define Exception Class
-      throw new IllegalArgumentException("Invalid email or password");
+      throw new BadCredentialsException("email or password is incorrect");
     }
 
-    return new LoginResponse(
-        user.customer().getId()
-    );
+    return mapper.toResponse(user.customer());
   }
 
   private String getAuthority(UserDetails user) {

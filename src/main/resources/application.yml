@@ -11,4 +11,4 @@ server:
 
 security:
   permit-all:
-    urls: /api/customer/public/**, /error
+    urls: /api/customer/public/**, /error, /error/**

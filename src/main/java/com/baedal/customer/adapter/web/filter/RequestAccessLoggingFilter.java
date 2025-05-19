@@ -25,6 +25,7 @@ public class RequestAccessLoggingFilter extends OncePerRequestFilter {
     try {
       filterChain.doFilter(request, response);
     } catch (Throwable e) {
+      log.info("Exception: [{}], message: [{}]", e.getClass().getSimpleName(), e.getMessage());
       throw e;
     } finally {
       log.info("After Request:: Client IP: [{}], [{}] path:[{}]", ip, method, uri);
